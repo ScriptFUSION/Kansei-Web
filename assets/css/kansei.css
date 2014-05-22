@@ -1,0 +1,63 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+
+    font-family: sans-serif;
+    background: lightgray;
+}
+
+.table {
+    position: relative;
+    height: 75%;
+}
+
+.hand {
+    height: 25%;
+}
+.hand > li {
+    float: left;
+
+    border: 6px solid rgba(255, 255, 255, .25);
+
+    font-size: 100pt;
+}
+
+.discard {
+    position: absolute;
+    left: 50%;
+    bottom: 15%;
+    margin-left: -100px;
+}
+
+.draw {
+    position: absolute;
+    right: 30%;
+    bottom: 15%;
+    margin-left: -100px;
+}
+
+.opponent {
+    position: absolute;
+    width: 59px; /* Chrome fix. */
+}
+
+.opponent > .hand {
+    position: absolute;
+    width: 30px;
+    height: 10px;
+
+    background: #88f;
+    border-top: 1px solid #fff;
+}
+
+/* Card template */
+.hand > li, .discard, .draw {
+    width: 200px;
+    height: 300px;
+    line-height: 300px;
+
+    color: #fff;
+    background: lightslategrey;
+    text-align: center;
+    border-radius: 12px;
+}
