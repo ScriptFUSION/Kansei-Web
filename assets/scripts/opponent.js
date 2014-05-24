@@ -2,10 +2,10 @@
  * Represents an opponent player comprised of a DOM element containing an
  * avatar and their hand of cards.
  *
- * @param domParent Parent DOM element to contain this Opponent.
+ * @param table Table instance.
  * @constructor
  */
-function Opponent(domParent) {
+function Opponent(table) {
     var element, self = this;
 
     function construct() {
@@ -16,12 +16,18 @@ function Opponent(domParent) {
             '2H22.041C9.889,35.607,0,45.495,0,57.649l0.045,18.148c0,0,10.823' +
             ',5.219,31.203,5.219c17.703,0,27.322-5.498,27.322-5.498"/>';
         element.grab(new Element('.hand'));
-
-        domParent.grab(element);
     }
+
+    this.getElement = function() {
+        return element;
+    };
 
     this.getAvatar = function() {
         return element.getElement('svg');
+    };
+
+    this.getBody = function() {
+        return element.getElement('path');
     };
 
     this.getHand = function() {
@@ -70,24 +76,18 @@ function Opponent(domParent) {
         return {x: size.width / 2, y: size.height};
     }
 
-    function getParentOrigin() {
-        var size = domParent.getSize();
-        size.x /= 2;
-
-        return size;
-    }
-
     function updateHandPosition() {
-        var o1 = self.getOrigin(), o2 = getParentOrigin(),
+        var o1 = self.getOrigin(), o2 = table.getOrigin(),
             ro = getRelativeOrigin(),
-            a = Math.atan2(o2.y - o1.y, o2.x - o1.x),
-            cos = Math.cos(a), sin = Math.sin(a),
-            d = 20,
+            rad = Math.atan2(o2.y - o1.y, o2.x - o1.x),
+            cos = Math.cos(rad), sin = Math.sin(rad),
+            d = 16,
             hand = self.getHand();
 
         hand.setStyles({
-            left: Math.round(ro.x + cos * d - hand.getSize().x / 2) + 'px',
-            top: Math.round(ro.y + sin * d) + 'px'
+            left: Math.round(ro.x + cos * d * 2 - hand.getSize().x / 2) + 'px',
+            top: Math.round(ro.y + sin * d) + 'px',
+            transform: 'rotate(' + (rad + 1.57) + 'rad)'
         });
     }
 
