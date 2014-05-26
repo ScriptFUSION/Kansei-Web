@@ -36,9 +36,18 @@ html, body {
     margin-left: -100px;
 }
 
+.pass {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    width: 100px;
+    height: 40px;
+    margin-left: -50px;
+}
+
 .opponent {
     position: absolute;
-    width: 59px; /* Chrome fix. */
+    width: 59px; /* Webkit fix. */
 }
 
 .opponent > .hand {

@@ -11,6 +11,10 @@ function Table(element) {
         this.refresh();
     }
 
+    this.getPath = function() {
+        return path;
+    };
+
     this.getSize = function() {
         var box = path.getBoundingBox();
         box.x = box.x2 - box.x1;

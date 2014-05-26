@@ -1,15 +1,17 @@
 !!!
 %title Kansei
-%link{ href: '/css/reset.css', rel: 'stylesheet', type: 'text/css' }
-%link{ href: '/css/kansei.css', rel: 'stylesheet', type: 'text/css' }
+%link(href='/css/reset.css' rel='stylesheet' type='text/css')
+%link(href='/css/kansei.css' rel='stylesheet' type='text/css')
 .table
   .draw Draw
   .discard Discard
+  %button.pass(disabled) Pass
 %ol.hand
   - (1..7).each do |i|
     %li #{i}
-%script{ src: '//cdnjs.cloudflare.com/ajax/libs/mootools/1.5.0/mootools-core-full-nocompat.min.js' }
-%script{ src: '/scripts/lib/path.js' }
-%script{ src: '/scripts/table.js' }
-%script{ src: '/scripts/opponent.js' }
-%script{ src: '/scripts/kansei.js' }
+%script(src="#{settings.libraries[:mootools]}")
+%script(src='/scripts/lib/path.js')
+%script(src='/scripts/table.js')
+%script(src='/scripts/opponent.js')
+%script(src='/scripts/kansei.js')
+%script(src="#{settings.faye_path}.js")
