@@ -18,10 +18,7 @@
     }
 
     var table = new Table($$('.table')[0]);
-    plotPath(table.getPath()); //debug
     table.createOpponents(9);
 
-    addEvents({
-        resize: table.refresh
-    });
+    addEvent('resize', table.refresh);
 })();

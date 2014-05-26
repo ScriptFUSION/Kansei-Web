@@ -11,10 +11,6 @@ function Table(element) {
         this.refresh();
     }
 
-    this.getPath = function() {
-        return path;
-    };
-
     this.getSize = function() {
         var box = path.getBoundingBox();
         box.x = box.x2 - box.x1;
@@ -70,11 +66,11 @@ function Table(element) {
     }
 
     function distributeOpponents() {
-        for (var i = 0, point; i < opponents.length; ++i) {
-            // Divide path into players+1 segments and discard the first.
-            point = path.step(1 / (opponents.length + 1) * (i + 1));
-            opponents[i].setPosition(point.x, point.y);
-        }
+        for (var i = 0; i < opponents.length; ++i)
+            opponents[i].setPosition(
+                // Divide path into players+1 segments and discard the first.
+                path.step(1 / (opponents.length + 1) * (i + 1))
+            );
     }
 
     construct.call(this);

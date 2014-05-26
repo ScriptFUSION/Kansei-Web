@@ -1,5 +1,5 @@
 require 'haml'
 
 get '/' do
-  haml :default
+  haml :kansei
 end

@@ -30,6 +30,13 @@ function Opponent(table) {
         return element.getElement('path');
     };
 
+    this.getBodyCentre = function() {
+        var pos = this.getPosition(),
+            body = getRelativeBodyCentre();
+
+        return {x: pos.x + body.x, y: pos.y + body.y};
+    };
+
     this.getHand = function() {
         return element.getElement('.hand');
     };
@@ -38,18 +45,21 @@ function Opponent(table) {
         return this.getAvatar().getBBox();
     };
 
+    this.getPosition = function() {
+        return element.getPosition();
+    };
+
     /**
      * Sets the position about the origin using the specified coordinates.
      *
-     * @param x Horizontal coordinate.
-     * @param y Vertical coordinate.
+     * @param pos Position object.
      */
-    this.setPosition = function(x, y) {
+    this.setPosition = function(pos) {
         var origin = getRelativeOrigin();
 
         element.setStyles({
-            left: Math.round(x - origin.x) + 'px',
-            top: Math.round(y - origin.y) + 'px'
+            left: Math.round(pos.x - origin.x) + 'px',
+            top: Math.round(pos.y - origin.y) + 'px'
         });
 
         updateHandPosition();
@@ -76,18 +86,35 @@ function Opponent(table) {
         return {x: size.width / 2, y: size.height};
     }
 
+    function getBodySize() {
+        return self.getBody().getBBox();
+    }
+
+    function getRelativeBodyCentre() {
+        var size = getBodySize();
+
+        return {x: size.x + size.width / 2, y: size.y + size.height / 2};
+    }
+
     function updateHandPosition() {
-        var o1 = self.getOrigin(), o2 = table.getOrigin(),
-            ro = getRelativeOrigin(),
-            rad = Math.atan2(o2.y - o1.y, o2.x - o1.x),
-            cos = Math.cos(rad), sin = Math.sin(rad),
-            d = 16,
+        var o1 = self.getBodyCentre(), o2 = table.getOrigin(),
+            rel = getRelativeBodyCentre(),
+            size = table.getSize(), rot,
+            //Semi-major/minor axes.
+            a = size.x / 2, b = size.y,
+            //Normal angle.
+            n = Math.atan2((o2.y - o1.y) * a/b, (o2.x - o1.x) * b/a),
+            //Delta (distance to move).
+            d = 42,
+            //Delta x/y.
+            dx = Math.cos(n) * d, dy = Math.sin(n) * d,
             hand = self.getHand();
 
         hand.setStyles({
-            left: Math.round(ro.x + cos * d * 2 - hand.getSize().x / 2) + 'px',
-            top: Math.round(ro.y + sin * d) + 'px',
-            transform: 'rotate(' + (rad + 1.57) + 'rad)'
+            left: Math.round(rel.x + dx - hand.getSize().x / 2) + 'px',
+            top: Math.round(rel.y + dy) + 'px',
+            transform: rot = 'rotate(' + (n + 1.57) + 'rad)',
+            '-webkit-transform': rot
         });
     }
 
