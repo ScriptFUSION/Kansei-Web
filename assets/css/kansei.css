@@ -6,6 +6,10 @@ html, body {
     background: lightgray;
 }
 
+.hidden {
+    display: none;
+}
+
 .table {
     position: relative;
     height: 75%;
@@ -69,4 +73,32 @@ html, body {
     background: lightslategrey;
     text-align: center;
     border-radius: 12px;
+}
+
+.chat {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 300px;
+    margin: -150px -300px;
+
+    color: #E7EFEF;
+    background: rgba(0, 0, 0, .8);
+}
+.chat > input {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1px .2em;
+    box-sizing: border-box;
+
+    color: inherit;
+    background: rgba(84, 82, 78, 0.87);
+    border: 1px outset #000;
+    font-size: 14pt;
+}
+.chat > .messages {
+    height: 100%;
+    overflow: auto;
 }

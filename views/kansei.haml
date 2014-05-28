@@ -9,9 +9,14 @@
 %ol.hand
   - (1..7).each do |i|
     %li #{i}
+.chat.hidden
+  %ol.messages
+  %input
 %script(src="#{settings.libraries[:mootools]}")
 %script(src='/scripts/lib/path.js')
 %script(src='/scripts/table.js')
 %script(src='/scripts/opponent.js')
 %script(src='/scripts/kansei.js')
+%script(src='/scripts/chat.js')
 %script(src="#{settings.faye_path}.js")
+%script(src="/scripts/rt.js")
