@@ -1,7 +1,7 @@
 module KanseiWeb
   # Faye extension providing Kansei features.
   class KanseiExtension
-    def incoming(message, request, callback)
+    def incoming(message, callback)
       puts '<- ' << message.inspect
 
       callback.call(message)
