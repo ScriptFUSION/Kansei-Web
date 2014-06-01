@@ -1,13 +1,10 @@
 require 'sinatra/base'
-require 'faye'
-
-require_relative '../rack/lint'
-require_relative 'kansei_extension'
+require 'kansei/game'
 
 module KanseiWeb
-  # Kansei Rack application.
+  # Kansei Sinatra application.
   class Application < Sinatra::Base
-    Dir.chdir File.dirname(__FILE__) << '/../..'
+    Dir.chdir File.realpath('../..', __dir__)
 
     # Load settings.
     Dir.glob('settings.d/*') do |file|
