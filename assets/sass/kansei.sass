@@ -1,0 +1,84 @@
+html, body
+  height: 100%
+  overflow: hidden
+
+  font-family: sans-serif
+  background: lightgray
+
+.hidden
+  display: none
+
+.table
+  position: relative
+  height: 75%
+
+.hand
+  height: 25%
+  > li
+    float: left
+    border: 6px solid rgba(255, 255, 255, 0.25)
+    font-size: 100pt
+
+.discard
+  position: absolute
+  left: 50%
+  bottom: 15%
+  margin-left: -100px
+
+.draw
+  position: absolute
+  right: 30%
+  bottom: 15%
+  margin-left: -100px
+
+.pass
+  position: absolute
+  bottom: 10px
+  left: 50%
+  width: 100px
+  height: 40px
+  margin-left: -50px
+
+.opponent
+  position: absolute
+  width: 59px // Webkit fix.
+  > .hand
+    position: absolute
+    width: 30px
+    height: 10px
+    background: #88f
+    border-top: 1px solid #fff
+
+// Card template.
+.hand > li, .discard, .draw
+  width: 200px
+  height: 300px
+  line-height: 300px
+  color: #fff
+  background: lightslategrey
+  text-align: center
+  border-radius: 12px
+
+.chat
+  position: absolute
+  top: 50%
+  left: 50%
+  width: 600px
+  height: 300px
+  margin: -150px -300px
+  color: #E7EFEF
+  background: rgba(0, 0, 0, .8)
+  >
+    input
+      position: absolute
+      bottom: 0
+      width: 100%
+      padding: 1px .2em
+      box-sizing: border-box
+      color: inherit
+      background: rgba(84, 82, 78, 0.87)
+      border: 1px outset #000
+      font-size: 14pt
+    .messages
+      height: 100%
+      overflow: auto
