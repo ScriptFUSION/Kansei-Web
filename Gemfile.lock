@@ -12,6 +12,7 @@ GEM
       http_parser.rb (>= 0.6.0)
     em-socksify (0.3.0)
       eventmachine (>= 1.0.0.beta.4)
+    eventmachine (1.0.3)
     eventmachine (1.0.3-x86-mingw32)
     faye (1.0.1)
       cookiejar (>= 0.3.0)
@@ -28,7 +29,7 @@ GEM
       tilt
     http_parser.rb (0.6.0)
     multi_json (1.10.1)
-    rack (1.5.2)
+    rack (1.6.13)
     rack-protection (1.5.3)
       rack
     sass (3.3.8)
@@ -44,6 +45,7 @@ GEM
     websocket-driver (0.3.3)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
